@@ -3,14 +3,10 @@ import Image from "next/image";
 import React,{useState,useEffect} from "react";
 import htmlimg from "../../../Assests/HTML.png";
 
-const ModelContent = ({ data,setdata,func}) => {
+const ModelContent = ({ data,setdata,setrank,setpercentile,setcurr_score,rank,percentile,curr_score}) => {
   
-      const [rank, setrank] = useState(true);
-      const [percentile, setpercentile] = useState(true);
-      const [curr_score, setcurr_score] = useState(true);
-
       const checkfunc=()=>{
-        if(data.rank!=="" && typeof(Number(data.rank)) === "number" && Number(data.rank)>0 )
+        if(data.rank!=="" && typeof(Number(data.rank)) === "number" && Number(data.rank) >= 1 )
             setrank(true);
 
        else
@@ -27,9 +23,6 @@ const ModelContent = ({ data,setdata,func}) => {
 
         else
             setcurr_score(false);
-
-      
-      func(rank,percentile,curr_score);      
       }
       
       useEffect(()=>{

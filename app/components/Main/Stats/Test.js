@@ -17,9 +17,9 @@ const Test = ({datafunc}) => {
   const [isOpen, setIsOpen] = useState(false);
   const handleOpen = () => setIsOpen(true);
 
-  const [rank, setrank] = useState();
-  const [percentile, setpercentile] = useState();
-  const [curr_score, setcurr_score] = useState();
+  const [rank, setrank] = useState(true);
+  const [percentile, setpercentile] = useState(true);
+  const [curr_score, setcurr_score] = useState(true);
 
   const [data, setdata] = useState({
     rank:"2",
@@ -41,13 +41,6 @@ const Test = ({datafunc}) => {
     })
   }
 
-  const func=(r,p,s)=>{
-     setrank(r);
-     setpercentile(p);
-     setcurr_score(s);
-     console.log(r,p,s);
-     
-  }
 
   return (
     <>
@@ -62,7 +55,8 @@ const Test = ({datafunc}) => {
         {/* <DialogBackdrop  className="w-[115vw] h-[200vw]"/> */}
         <DialogContent>
           <DialogBody>
-            <ModelContent data={data} setdata={setdata} func={func}  />
+            <ModelContent data={data} setdata={setdata}  setrank={setrank} setpercentile={setpercentile} setcurr_score={setcurr_score} 
+            rank={rank} percentile={percentile} curr_score={curr_score}/>
           </DialogBody>
           <DialogFooter>
             <DialogActionTrigger asChild>
