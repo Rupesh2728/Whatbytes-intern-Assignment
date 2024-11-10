@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import graphicon from "../../../Assests/graphicon.jpg";
+import graphicon from "../../../Assests/graphIcon.jpg";
 import Chart from "./Chart";
 
 const Graph = ({ percentile }) => {
