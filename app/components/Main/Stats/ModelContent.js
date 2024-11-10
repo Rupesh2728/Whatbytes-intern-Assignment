@@ -3,30 +3,33 @@ import Image from "next/image";
 import React,{useState,useEffect} from "react";
 import htmlimg from "../../../Assests/HTML.png";
 
-const ModelContent = ({ data,setdata}) => {
+const ModelContent = ({ data,setdata,func}) => {
   
-      const [rank, setrank] = useState();
-      const [percentile, setpercentile] = useState();
-      const [curr_score, setcurr_score] = useState();
+      const [rank, setrank] = useState(true);
+      const [percentile, setpercentile] = useState(true);
+      const [curr_score, setcurr_score] = useState(true);
 
       const checkfunc=()=>{
-        if(data.rank!=="" && typeof(Number(data.rank)) === "number")
+        if(data.rank!=="" && typeof(Number(data.rank)) === "number" && Number(data.rank)>0 )
             setrank(true);
 
        else
             setrank(false);
 
-        if(data.percentile!=="" && typeof(Number(data.percentile)) === "number" && (Number(data.percentile)>0 && Number(data.percentile)<100)) 
+        if(data.percentile!=="" && typeof(Number(data.percentile)) === "number" && (Number(data.percentile)>=0 && Number(data.percentile)<=100)) 
             setpercentile(true);
 
         else
             setpercentile(false);
 
-        if(data.curr_score!=="" && typeof(Number(data.curr_score)) === "number") 
+        if(data.curr_score!=="" && typeof(Number(data.curr_score)) === "number" && Number(data.curr_score) >=0 && Number(data.curr_score)<=15) 
             setcurr_score(true);
 
         else
             setcurr_score(false);
+
+      
+      func(rank,percentile,curr_score);      
       }
       
       useEffect(()=>{
@@ -41,7 +44,7 @@ const ModelContent = ({ data,setdata}) => {
             [name]: value,
           };
         });
-
+        
         console.log(data);
         };
         

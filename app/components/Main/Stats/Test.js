@@ -17,6 +17,10 @@ const Test = ({datafunc}) => {
   const [isOpen, setIsOpen] = useState(false);
   const handleOpen = () => setIsOpen(true);
 
+  const [rank, setrank] = useState();
+  const [percentile, setpercentile] = useState();
+  const [curr_score, setcurr_score] = useState();
+
   const [data, setdata] = useState({
     rank:"2",
     percentile: "60",
@@ -37,6 +41,14 @@ const Test = ({datafunc}) => {
     })
   }
 
+  const func=(r,p,s)=>{
+     setrank(r);
+     setpercentile(p);
+     setcurr_score(s);
+     console.log(r,p,s);
+     
+  }
+
   return (
     <>
       <DialogRoot
@@ -50,7 +62,7 @@ const Test = ({datafunc}) => {
         {/* <DialogBackdrop  className="w-[115vw] h-[200vw]"/> */}
         <DialogContent>
           <DialogBody>
-            <ModelContent data={data} setdata={setdata}  />
+            <ModelContent data={data} setdata={setdata} func={func}  />
           </DialogBody>
           <DialogFooter>
             <DialogActionTrigger asChild>
@@ -61,13 +73,23 @@ const Test = ({datafunc}) => {
              Cancel
             </button>
             </DialogActionTrigger>
-            <button
+
+            
+            {(rank && percentile && curr_score )? (<button
               onClick={SubmitHandler}
               className="bg-[rgb(33,33,97)] flex text-white border-[0.1rem] px-[0.8rem] w-[7rem] h-[3rem] rounded-lg ml-[0.8rem]"
             >
               <p className="m-auto">Save</p>
               <FaArrowRight className="m-auto"/>
-            </button>
+            </button>) : 
+
+           ( <button disabled={true}
+            onClick={SubmitHandler}
+            className="bg-[indianred] flex text-white border-[0.1rem] px-[0.8rem] w-[7rem] h-[3rem] rounded-lg ml-[0.8rem]"
+          >
+            <p className="m-auto">Save</p>
+            <FaArrowRight className="m-auto"/>
+          </button>)}
           </DialogFooter>
         </DialogContent>
       </DialogRoot>
