@@ -5,7 +5,7 @@ import Main from '../components/Main/Main'
 
 const page = () => {
   return (
-    <div>
+    <div className="bg-white">
        <NavBar/>
        <hr/>
        <div className="flex">
